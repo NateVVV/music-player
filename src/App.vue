@@ -11,18 +11,19 @@
         </v-app-bar>
 
         <v-main>
-            <!--  -->
+            <MusicPlayer></MusicPlayer>
         </v-main>
     </v-app>
 </template>
 
 <script>
 import FileExplorer from "@/components/FileExplorer.vue";
+import MusicPlayer from "@/components/MusicPlayer.vue";
 
 export default {
     name: "App",
 
-    components: { FileExplorer },
+    components: { FileExplorer, MusicPlayer },
 
     data: () => ({
         drawer: true,
