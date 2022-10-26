@@ -2,17 +2,26 @@
     <v-container>
         <v-btn @click="browse">Browse</v-btn>
         <v-list>
-            <v-list-subheader>
+            <v-subheader>
                 {{ directory }}
-            </v-list-subheader>
-            <v-list-item
-                v-for="(item, i) in files"
-                :key="i"
-                :value="item"
-                active-color="primary"
-            >
-                <v-list-item-title v-text="item.name"></v-list-item-title>
-            </v-list-item>
+            </v-subheader>
+
+            <v-list-item-group v-model="selectedTrack" color="primary">
+                <v-list-item
+                    v-for="(item, i) in files"
+                    :key="i"
+                    active-color="primary"
+                >
+                    <v-list-item-icon>
+                        <v-icon>mdi-clock</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title
+                            v-text="item.name"
+                        ></v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list-item-group>
         </v-list>
         <audio controls id="audioElm">
             <source id="audioSrc" />
@@ -28,7 +37,7 @@ export default {
     data: () => ({
         directory: "",
         files: [],
-        track: null,
+        selectedTrack: null,
     }),
     methods: {
         async browse() {
@@ -44,24 +53,28 @@ export default {
             }
             const files = await Promise.all(filesPromises);
             this.files = files.filter((f) => f.type == "audio/mpeg");
-            this.playMusic();
+            this.selectedTrack = 0;
+            this.loadMusic(this.selectedTrack);
         },
-        playMusic() {
+        loadMusic(trackIndex) {
             const audio = document.getElementById("audioElm");
             const audioSrc = document.getElementById("audioSrc");
-            const file = this.files[0];
+            const file = this.files[trackIndex];
 
             audioSrc.type = file.type;
-            console.log(file);
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    console.log(e);
                     audioSrc.src = e.target.result;
                     audio.load();
                 };
                 reader.readAsDataURL(file);
             }
+        },
+    },
+    watch: {
+        selectedTrack(newTrack) {
+            this.loadMusic(newTrack);
         },
     },
 };
