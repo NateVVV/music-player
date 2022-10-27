@@ -12,7 +12,7 @@
 
         <v-main>
             <MusicAnimation></MusicAnimation>
-            <MusicPlayer></MusicPlayer>
+            <MusicPlayer v-if="true"></MusicPlayer>
         </v-main>
     </v-app>
 </template>

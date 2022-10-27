@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container id="audio">
         <audio controls id="audioElm">
             <source id="audioSrc" />
             Your browser does not support the audio format.
@@ -31,6 +31,7 @@ export default {
                 reader.onload = (e) => {
                     audioSrc.src = e.target.result;
                     audio.load();
+                    audio.play();
                 };
                 reader.readAsDataURL(track);
             }
@@ -38,3 +39,9 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+#audio {
+    /*display: none;*/
+}
+</style>

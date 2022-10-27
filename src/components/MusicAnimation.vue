@@ -1,11 +1,14 @@
 <template>
-    <canvas
-        id="musicAnimation"
-        style="witdh: 100; height: 100"
-        width="1065"
-        height="732"
-    >
-    </canvas>
+    <div id="canvas-wrapper" ref="wrapper">
+        <canvas
+            id="musicAnimation"
+            style="witdh: 100; height: 100"
+            width="300"
+            height="732"
+            ref="canvas"
+        >
+        </canvas>
+    </div>
 </template>
 
 <script>
@@ -14,13 +17,20 @@ import { Wave } from "@foobar404/wave";
 export default {
     name: "MusicAnimation",
     data: () => ({
-        //
+        ro: null,
     }),
     mounted() {
-        const canvasElement = document.getElementById("musicAnimation");
         const audioElement = document.getElementById("audioElm");
+        this.ro = new ResizeObserver(this.onResize);
+        this.ro.observe(this.$refs.wrapper);
 
-        const wave = new Wave(audioElement, canvasElement);
+        this.$refs.canvas.setAttribute("width", this.$refs.wrapper.clientWidth);
+        this.$refs.canvas.setAttribute(
+            "height",
+            this.$refs.wrapper.clientHeight
+        );
+
+        const wave = new Wave(audioElement, this.$refs.canvas);
 
         const g = new wave.animations.Glob({
             fillColor: {
@@ -37,12 +47,30 @@ export default {
         wave.addAnimation(g);
 
         window.setInterval(() => {
-            console.log(g._options.fillColor.rotate);
             g._options.fillColor.rotate += 3;
             g._options.fillColor.rotate %= 360;
         }, 10);
     },
+    methods: {
+        onResize() {
+            this.$refs.canvas.setAttribute(
+                "width",
+                this.$refs.wrapper.clientWidth
+            );
+            /*
+            this.$refs.canvas.setAttribute(
+                "height",
+                this.$refs.wrapper.clientHeight
+            );
+            */
+        },
+    },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#canvas-wrapper {
+    width: 100%;
+    height: 80%;
+}
+</style>
