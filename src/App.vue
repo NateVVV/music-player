@@ -16,11 +16,9 @@
             <FileExplorer></FileExplorer>
         </v-navigation-drawer>
 
-        <v-navigation-drawer
-            app
-            right
-            v-model="animationPanel"
-        ></v-navigation-drawer>
+        <v-navigation-drawer app right v-model="animationPanel" width="400">
+            <AnimationPanel></AnimationPanel>
+        </v-navigation-drawer>
 
         <v-main>
             <MusicAnimation></MusicAnimation>
@@ -33,11 +31,12 @@
 import FileExplorer from "@/components/FileExplorer.vue";
 import MusicPlayer from "@/components/MusicPlayer.vue";
 import MusicAnimation from "@/components/MusicAnimation.vue";
+import AnimationPanel from "@/components/AnimationPanel.vue";
 
 export default {
     name: "App",
 
-    components: { FileExplorer, MusicPlayer, MusicAnimation },
+    components: { FileExplorer, MusicPlayer, MusicAnimation, AnimationPanel },
 
     data: () => ({
         drawer: true,

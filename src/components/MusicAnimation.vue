@@ -13,6 +13,7 @@
 
 <script>
 import { Wave } from "@foobar404/wave";
+import eventBus from "@/event-bus.js";
 
 export default {
     name: "MusicAnimation",
@@ -31,25 +32,7 @@ export default {
         );
 
         const wave = new Wave(audioElement, this.$refs.canvas);
-
-        const g = new wave.animations.Glob({
-            fillColor: {
-                gradient: ["#060070", "#710083", "#bd4446"],
-                rotate: 45,
-            },
-            lineWidth: 3,
-            count: 60,
-            lineColor: "#d7821c",
-            diameter: 200,
-            frequencyBand: "mids",
-            glow: { color: "#fff9c4", strength: 3 },
-        });
-        wave.addAnimation(g);
-
-        window.setInterval(() => {
-            g._options.fillColor.rotate += 3;
-            g._options.fillColor.rotate %= 360;
-        }, 10);
+        eventBus.$emit("wave-instantiated", wave);
     },
     methods: {
         onResize() {
