@@ -1,14 +1,26 @@
 <template>
     <v-app id="inspire">
+        <v-app-bar app color="primary" dark>
+            <v-btn icon @click="drawer = !drawer"
+                ><v-icon>mdi-menu</v-icon></v-btn
+            >
+            <v-toolbar-title>Music Player</v-toolbar-title>
+            <v-spacer></v-spacer>
+
+            <v-btn icon @click="animationPanel = !animationPanel"
+                ><v-icon>mdi-cog</v-icon></v-btn
+            >
+        </v-app-bar>
+
         <v-navigation-drawer v-model="drawer" app>
             <FileExplorer></FileExplorer>
         </v-navigation-drawer>
 
-        <v-app-bar app>
-            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-            <v-toolbar-title>Music Player</v-toolbar-title>
-        </v-app-bar>
+        <v-navigation-drawer
+            app
+            right
+            v-model="animationPanel"
+        ></v-navigation-drawer>
 
         <v-main>
             <MusicAnimation></MusicAnimation>
@@ -29,6 +41,7 @@ export default {
 
     data: () => ({
         drawer: true,
+        animationPanel: false,
     }),
 };
 </script>
