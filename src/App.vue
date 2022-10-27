@@ -11,6 +11,7 @@
         </v-app-bar>
 
         <v-main>
+            <MusicAnimation></MusicAnimation>
             <MusicPlayer></MusicPlayer>
         </v-main>
     </v-app>
@@ -19,11 +20,12 @@
 <script>
 import FileExplorer from "@/components/FileExplorer.vue";
 import MusicPlayer from "@/components/MusicPlayer.vue";
+import MusicAnimation from "@/components/MusicAnimation.vue";
 
 export default {
     name: "App",
 
-    components: { FileExplorer, MusicPlayer },
+    components: { FileExplorer, MusicPlayer, MusicAnimation },
 
     data: () => ({
         drawer: true,
