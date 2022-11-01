@@ -26,32 +26,51 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-        </v-container>
-        <div>fill color: {{ glob._options.fillColor }}</div>
-        <v-row>
-            <v-col cols="6">Frequency Band</v-col>
-            <v-col cols="6"
-                ><v-slider
-                    min="0"
-                    max="3"
-                    thumb-label
-                    @change="changeFrequencyBand"
-                    ref="frequencySlider"
-                    v-model="frequencyBand"
+            <div>fill color: {{ glob._options.fillColor }}</div>
+            <v-row>
+                <v-col cols="6">Frequency Band</v-col>
+                <v-col cols="6"
+                    ><v-slider
+                        min="0"
+                        max="3"
+                        thumb-label
+                        @change="changeFrequencyBand"
+                        ref="frequencySlider"
+                        v-model="frequencyBand"
+                    >
+                        <template v-slot:thumb-label="{ value }">
+                            {{ frequencyBands[value] }}
+                        </template>
+                    </v-slider></v-col
                 >
-                    <template v-slot:thumb-label="{ value }">
-                        {{ frequencyBands[value] }}
-                    </template>
-                </v-slider></v-col
-            >
-        </v-row>
-        <div>frequency band: {{ glob._options.frequencyBand }}</div>
-        <div>glow: {{ glob._options.glow }}</div>
-        <div>line color: {{ glob._options.lineColor }}</div>
-        <div>line width: {{ glob._options.lineWidth }}</div>
-        <div>mirrored X: {{ glob._options.mirroredX }}</div>
-        <div>rounded: {{ glob._options.rounded }}</div>
-        <div>rotate:</div>
+            </v-row>
+            <div>frequency band: {{ glob._options.frequencyBand }}</div>
+            <div>glow: {{ glob._options.glow }}</div>
+            <div>line color: {{ glob._options.lineColor }}</div>
+            <v-row>
+                <v-col cols="12"
+                    ><v-slider
+                        v-model="glob._options.lineWidth"
+                        min="0"
+                        max="400"
+                        thumb-label
+                        label="Line Width"
+                    ></v-slider
+                ></v-col>
+            </v-row>
+            <div v-if="glob.type != 'Glob'">
+                mirrored X: {{ glob._options.mirroredX }}
+            </div>
+            <v-row>
+                <v-col cols="12"
+                    ><v-switch
+                        v-model="glob._options.rounded"
+                        label="Rounded"
+                    ></v-switch
+                ></v-col>
+            </v-row>
+            <div>rotate:</div>
+        </v-container>
     </v-card>
 </template>
 
@@ -71,6 +90,7 @@ export default {
         this.frequencyBand = this.frequencyBands.indexOf(
             this.glob._options.frequencyBand
         );
+        this.glob._options.rounded = true;
     },
     methods: {
         changeFrequencyBand(value) {
