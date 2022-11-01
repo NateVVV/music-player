@@ -42,7 +42,7 @@ export default {
                 },
                 lineWidth: 3,
                 count: 60,
-                lineColor: "#d7821c",
+                lineColor: "#d7821cff",
                 diameter: 200,
                 frequencyBand: "mids",
                 glow: { color: "#fff9c4", strength: 3 },

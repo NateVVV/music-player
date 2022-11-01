@@ -44,9 +44,26 @@
                     </v-slider></v-col
                 >
             </v-row>
-            <div>frequency band: {{ glob._options.frequencyBand }}</div>
             <div>glow: {{ glob._options.glow }}</div>
-            <div>line color: {{ glob._options.lineColor }}</div>
+            <!--<v-row>
+                <v-col cols="6">
+                    <v-switch
+                        v-model="glob._options.glow"
+                        label="Glow"
+                    ></v-switch>
+                </v-col>
+            </v-row>-->
+            <v-row>
+                <v-col>Line Color</v-col>
+                <v-col>
+                    <v-color-picker
+                        show-swatches
+                        type="hexa"
+                        mode="hexa"
+                        v-model="glob._options.lineColor"
+                    ></v-color-picker>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col cols="12"
                     ><v-slider
@@ -91,6 +108,8 @@ export default {
             this.glob._options.frequencyBand
         );
         this.glob._options.rounded = true;
+        //this.glob._options.glow = true;
+        //this.glob._options.color = "#D7821CFF";
     },
     methods: {
         changeFrequencyBand(value) {
