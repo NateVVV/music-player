@@ -5,35 +5,35 @@
                 <v-col cols="12">{{ glob.type }}</v-col>
             </v-row>
             <v-row>
-                <v-col cols="6">Count</v-col>
-                <v-col cols="6"
+                <v-col cols="12"
                     ><v-slider
                         v-model="glob._options.count"
                         min="10"
                         max="191"
                         thumb-label
+                        label="Count"
                     ></v-slider
                 ></v-col>
             </v-row>
             <v-row>
-                <v-col cols="6">Diameter</v-col>
-                <v-col cols="6"
+                <v-col cols="12"
                     ><v-slider
                         v-model="glob._options.diameter"
                         min="0"
                         max="800"
                         thumb-label
+                        label="Diameter"
                     ></v-slider
                 ></v-col>
             </v-row>
             <div>fill color: {{ glob._options.fillColor }}</div>
             <v-row>
-                <v-col cols="6">Frequency Band</v-col>
-                <v-col cols="6"
+                <v-col cols="12"
                     ><v-slider
                         min="0"
                         max="3"
                         thumb-label
+                        label="Frequency Band"
                         @change="changeFrequencyBand"
                         ref="frequencySlider"
                         v-model="frequencyBand"
