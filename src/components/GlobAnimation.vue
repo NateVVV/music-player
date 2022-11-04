@@ -28,6 +28,21 @@
             </v-row>
             <div>fill color: {{ glob._options.fillColor }}</div>
             <v-row>
+                <v-col>Fill Color</v-col>
+                <template
+                    v-for="(color, i) in glob._options.fillColor.gradient"
+                >
+                    <v-col :key="i">
+                        <v-color-picker
+                            show-swatches
+                            type="hexa"
+                            mode="hexa"
+                            v-model="glob._options.fillColor.gradient[i]"
+                        ></v-color-picker>
+                    </v-col>
+                </template>
+            </v-row>
+            <v-row>
                 <v-col cols="12"
                     ><v-slider
                         min="0"
