@@ -111,11 +111,14 @@
                     ></v-switch
                 ></v-col>
             </v-row>
-            <!--<div>rotate:</div>
+            <div>rotate: {{ element._options.fillColor.rotate }}</div>
             <v-row>
                 <v-col cols="12">Rotate</v-col>
                 <v-col cols="12">
-                    <v-switch label="Rotate" v-model="rotationEnabled"></v-switch>
+                    <v-switch
+                        label="Rotate"
+                        v-model="rotationEnabled"
+                    ></v-switch>
                 </v-col>
                 <v-col cols="12">
                     <v-slider
@@ -126,7 +129,7 @@
                         label="ms"
                     ></v-slider>
                 </v-col>
-            </v-row>-->
+            </v-row>
         </v-container>
     </v-card>
 </template>
@@ -139,8 +142,8 @@ export default {
         frequencyBands: ["base", "lows", "mids", "highs"],
         element: null,
         frequencyBand: null,
-        //rotationEnabled: true,
-        //rotationSpeed: 100,
+        rotationEnabled: true,
+        rotationSpeed: 100,
     }),
     created() {
         this.element = this.item;
@@ -159,6 +162,26 @@ export default {
             this.element._options.frequencyBand = frequencyBand;
             // may not be necessary (to send the update)
             this.$emit("change-frequency-band", frequencyBand, this.index);
+        },
+    },
+    watch: {
+        rotationSpeed(speed) {
+            if (!this.rotationEnabled) return;
+            clearInterval(this.element.intervalId);
+            this.element.intervalId = setInterval(() => {
+                this.element._options.fillColor.rotate += 3;
+                this.element._options.fillColor.rotate %= 360;
+            }, speed);
+        },
+        rotationEnabled(enabled) {
+            if (!enabled) {
+                clearInterval(this.element.intervalId);
+            } else {
+                this.element.intervalId = setInterval(() => {
+                    this.element._options.fillColor.rotate += 3;
+                    this.element._options.fillColor.rotate %= 360;
+                }, this.rotationSpeed);
+            }
         },
     },
 };

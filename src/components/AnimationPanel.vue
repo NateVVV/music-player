@@ -67,7 +67,7 @@ export default {
             });
             this.wave.addAnimation(g);
 
-            window.setInterval(() => {
+            g.intervalId = setInterval(() => {
                 g._options.fillColor.rotate += 3;
                 g._options.fillColor.rotate %= 360;
             }, 10);
