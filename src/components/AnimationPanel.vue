@@ -8,7 +8,16 @@
                 :item="item"
                 :index="i"
                 @change-frequency-band="changeFrequencyBand"
+                v-if="false"
             ></GlobAnimation>
+            <AnimationElement
+                :key="i"
+                :item="item"
+                :type="item.type"
+                :index="i"
+                @change-frequency-band="changeFrequencyBand"
+            >
+            </AnimationElement>
         </template>
     </v-container>
 </template>
@@ -17,10 +26,11 @@
 import eventBus from "@/event-bus.js";
 
 import GlobAnimation from "@/components/GlobAnimation.vue";
+import AnimationElement from "@/components/AnimationElement.vue";
 
 export default {
     name: "AnimationPanel",
-    components: { GlobAnimation },
+    components: { GlobAnimation, AnimationElement },
     data: () => ({
         wave: null,
         animations: [],
@@ -33,9 +43,17 @@ export default {
         });
     },
     watch: {
-        wave(newInstance) {
+        wave() {
             // add default animation
-            const g = new newInstance.animations.Glob({
+            this.addGlob();
+        },
+    },
+    methods: {
+        addGlob() {
+            if (!this.wave) return;
+
+            // add default animation
+            const g = new this.wave.animations.Glob({
                 fillColor: {
                     gradient: ["#060070", "#710083", "#bd4446"],
                     rotate: 45,
@@ -47,7 +65,7 @@ export default {
                 frequencyBand: "mids",
                 glow: { color: "#fff9c4", strength: 3 },
             });
-            newInstance.addAnimation(g);
+            this.wave.addAnimation(g);
 
             window.setInterval(() => {
                 g._options.fillColor.rotate += 3;
@@ -56,12 +74,6 @@ export default {
             g.type = "Glob";
             this.frequencyBandHelpers.push(g._options.frequencyBand);
             this.animations.push(g);
-        },
-    },
-    methods: {
-        addGlob() {
-            if (!this.wave) return;
-            this.animations.push(this.animations.length);
         },
         changeFrequencyBand(frequencyBand, index) {
             this.animations[index]._options.frequencyBand = frequencyBand;
