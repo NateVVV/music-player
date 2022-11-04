@@ -34,7 +34,6 @@
                 >
                     <v-col :key="i">
                         <v-color-picker
-                            show-swatches
                             type="hexa"
                             mode="hexa"
                             v-model="glob._options.fillColor.gradient[i]"
@@ -59,15 +58,26 @@
                     </v-slider></v-col
                 >
             </v-row>
-            <div>glow: {{ glob._options.glow }}</div>
-            <!--<v-row>
-                <v-col cols="6">
-                    <v-switch
-                        v-model="glob._options.glow"
-                        label="Glow"
-                    ></v-switch>
+            <v-row>
+                <v-col>Glow</v-col>
+                <v-col>
+                    <v-color-picker
+                        type="hexa"
+                        mode="hexa"
+                        v-model="glob._options.glow.color"
+                    ></v-color-picker>
                 </v-col>
-            </v-row>-->
+                <v-col>
+                    <v-slider
+                        v-model="glob._options.glow.strength"
+                        min="0"
+                        max="100"
+                        thumb-label
+                        label="Strength"
+                    >
+                    </v-slider>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col>Line Color</v-col>
                 <v-col>
@@ -101,7 +111,22 @@
                     ></v-switch
                 ></v-col>
             </v-row>
-            <div>rotate:</div>
+            <!--<div>rotate:</div>
+            <v-row>
+                <v-col cols="12">Rotate</v-col>
+                <v-col cols="12">
+                    <v-switch label="Rotate" v-model="rotationEnabled"></v-switch>
+                </v-col>
+                <v-col cols="12">
+                    <v-slider
+                        v-model="rotationSpeed"
+                        min="1"
+                        max="1000"
+                        thumb-label
+                        label="ms"
+                    ></v-slider>
+                </v-col>
+            </v-row>-->
         </v-container>
     </v-card>
 </template>
@@ -114,6 +139,8 @@ export default {
         frequencyBands: ["base", "lows", "mids", "highs"],
         glob: null,
         frequencyBand: null,
+        //rotationEnabled: true,
+        //rotationSpeed: 100,
     }),
     created() {
         this.glob = this.item;
