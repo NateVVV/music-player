@@ -2,7 +2,14 @@
     <v-card class="ma-2 pa-2">
         <v-container>
             <v-row no-gutters>
-                <v-col cols="12">{{ type }}</v-col>
+                <v-col>
+                    <v-select
+                        v-model="type"
+                        :items="types"
+                        label="Type"
+                        solo
+                    ></v-select>
+                </v-col>
             </v-row>
             <v-row>
                 <v-col cols="12"
@@ -137,16 +144,19 @@
 <script>
 export default {
     name: "AnimationElement",
-    props: ["item", "type", "index"],
+    props: ["item", "index"],
     data: () => ({
         frequencyBands: ["base", "lows", "mids", "highs"],
         element: null,
         frequencyBand: null,
         rotationEnabled: true,
         rotationSpeed: 100,
+        type: "Glob",
+        types: ["Glob", "Arcs", "Wave"],
     }),
     created() {
         this.element = this.item;
+        this.type = this.element.type;
     },
     mounted() {
         this.frequencyBand = this.frequencyBands.indexOf(
@@ -178,10 +188,17 @@ export default {
                 clearInterval(this.element.intervalId);
             } else {
                 this.element.intervalId = setInterval(() => {
-                    this.element._options.fillColor.rotate += 3;
+                    this.element._options.fillColor.rotate += 10;
                     this.element._options.fillColor.rotate %= 360;
                 }, this.rotationSpeed);
             }
+        },
+        type(newType) {
+            this.$emit("change-animation-type", newType, this.index);
+        },
+        item() {
+            this.element = this.item;
+            this.type = this.element.type;
         },
     },
 };
