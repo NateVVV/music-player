@@ -142,7 +142,7 @@
 </template>
 
 <script>
-import { animations } from "@/lib/wave.js";
+import { animations, rotate, stopRotation } from "@/lib/wave.js";
 
 export default {
     name: "AnimationElement",
@@ -154,14 +154,10 @@ export default {
         rotationEnabled: true,
         rotationSpeed: 100,
         type: "Glob",
-        types: ["Glob", "Arcs", "Wave", "Square"],
+        types: Object.keys(animations(null)),
     }),
     created() {
-        this.element = this.item;
-        this.type = this.element.type;
-        console.log(animations(null));
-        this.types = Object.keys(animations(null));
-        console.log(this.types);
+        this.setElement(this.item);
     },
     mounted() {
         this.frequencyBand = this.frequencyBands.indexOf(
@@ -178,32 +174,32 @@ export default {
             // may not be necessary (to send the update)
             this.$emit("change-frequency-band", frequencyBand, this.index);
         },
+        setElement(element) {
+            // stop rotation from previous element
+            if (this.element) stopRotation(this.element);
+            this.element = element;
+            this.type = this.element.type;
+            this.rotationEnabled = this.element.intervalId != undefined;
+        },
     },
     watch: {
         rotationSpeed(speed) {
             if (!this.rotationEnabled) return;
-            clearInterval(this.element.intervalId);
-            this.element.intervalId = setInterval(() => {
-                this.element._options.fillColor.rotate += 3;
-                this.element._options.fillColor.rotate %= 360;
-            }, speed);
+            rotate(this.element, speed);
         },
         rotationEnabled(enabled) {
-            if (!enabled) {
-                clearInterval(this.element.intervalId);
-            } else {
-                this.element.intervalId = setInterval(() => {
-                    this.element._options.fillColor.rotate += 10;
-                    this.element._options.fillColor.rotate %= 360;
-                }, this.rotationSpeed);
+            // clear old interval
+            stopRotation(this.element);
+            // set new intervall if necessary
+            if (enabled) {
+                rotate(this.element, this.rotationSpeed);
             }
         },
         type(newType) {
             this.$emit("change-animation-type", newType, this.index);
         },
         item() {
-            this.element = this.item;
-            this.type = this.element.type;
+            this.setElement(this.item);
         },
     },
 };

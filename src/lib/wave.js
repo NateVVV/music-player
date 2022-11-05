@@ -19,16 +19,29 @@ export function createAnimation(wave, type, options = defaultOptions) {
     const constructor = animations(wave)[type];
     const animation = new constructor(options);
     animation.type = type;
-    animation.intervalId = setInterval(() => {
-        animation._options.fillColor.rotate += 10;
-        animation._options.fillColor.rotate %= 360;
-    }, 10);
     return animation;
+}
+
+export function rotate(animation, speed, stepSize = 10) {
+    // clear old interval (if existing)
+    stopRotation(animation);
+
+    animation.intervalId = setInterval(() => {
+        animation._options.fillColor.rotate += stepSize;
+        animation._options.fillColor.rotate %= 360;
+    }, speed);
+}
+
+export function stopRotation(animation) {
+    if (animation.intervalId) {
+        clearInterval(animation.intervalId);
+    }
+    animation.intervalId = undefined;
 }
 
 export const defaultOptions = {
     fillColor: {
-        gradient: ["#060070", "#710083", "#bd4446"],
+        gradient: ["#060070ff", "#710083ff", "#bd4446ff"],
         rotate: 45,
     },
     lineWidth: 3,
@@ -36,5 +49,5 @@ export const defaultOptions = {
     lineColor: "#d7821cff",
     diameter: 200,
     frequencyBand: "mids",
-    glow: { color: "#fff9c4", strength: 3 },
+    glow: { color: "#fff9c4ff", strength: 3 },
 };
