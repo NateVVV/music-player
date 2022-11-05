@@ -2,14 +2,6 @@
     <v-container>
         <v-btn @click="addAnimation">Add Glob</v-btn>
         <template v-for="(item, i) in animations">
-            <GlobAnimation
-                :key="i"
-                :wave="wave"
-                :item="item"
-                :index="i"
-                @change-frequency-band="changeFrequencyBand"
-                v-if="false"
-            ></GlobAnimation>
             <AnimationElement
                 :key="i"
                 :item="item"
@@ -26,14 +18,13 @@
 <script>
 import eventBus from "@/event-bus.js";
 
-import GlobAnimation from "@/components/GlobAnimation.vue";
 import AnimationElement from "@/components/AnimationElement.vue";
 
 import { createAnimation } from "@/lib/wave.js";
 
 export default {
     name: "AnimationPanel",
-    components: { GlobAnimation, AnimationElement },
+    components: { AnimationElement },
     data: () => ({
         wave: null,
         animations: [],
