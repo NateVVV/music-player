@@ -1,16 +1,15 @@
 export function animations(wave) {
     const animation = {
-        Arcs: wave.animations.Arcs,
-        Circles: wave.animations.Circles,
-        Cubes: wave.animations.Cubes,
-        Flower: wave.animations.Flower,
-        Glob: wave.animations.Glob,
-        Lines: wave.animations.Lines,
-        Shine: wave.animations.Shine,
-        Square: wave.animations.Square,
-        Turntable: wave.animations.Turntable,
-        Wave: wave.animations.Wave,
-        Test: "Test",
+        Arcs: wave?.animations.Arcs,
+        Circles: wave?.animations.Circles,
+        Cubes: wave?.animations.Cubes,
+        Flower: wave?.animations.Flower,
+        Glob: wave?.animations.Glob,
+        Lines: wave?.animations.Lines,
+        Shine: wave?.animations.Shine,
+        Square: wave?.animations.Square,
+        Turntable: wave?.animations.Turntable,
+        Wave: wave?.animations.Wave,
     };
     return animation;
 }

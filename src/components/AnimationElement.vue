@@ -142,6 +142,8 @@
 </template>
 
 <script>
+import { animations } from "@/lib/wave.js";
+
 export default {
     name: "AnimationElement",
     props: ["item", "index"],
@@ -152,11 +154,14 @@ export default {
         rotationEnabled: true,
         rotationSpeed: 100,
         type: "Glob",
-        types: ["Glob", "Arcs", "Wave"],
+        types: ["Glob", "Arcs", "Wave", "Square"],
     }),
     created() {
         this.element = this.item;
         this.type = this.element.type;
+        console.log(animations(null));
+        this.types = Object.keys(animations(null));
+        console.log(this.types);
     },
     mounted() {
         this.frequencyBand = this.frequencyBands.indexOf(
