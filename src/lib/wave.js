@@ -14,7 +14,7 @@ export function animations(wave) {
     return animation;
 }
 
-export function createAnimation(wave, type, options = defaultOptions) {
+export function createAnimation(wave, type, options = defaultOptions()) {
     if (!wave) return;
     const constructor = animations(wave)[type];
     const animation = new constructor(options);
@@ -39,7 +39,7 @@ export function stopRotation(animation) {
     animation.intervalId = undefined;
 }
 
-export const defaultOptions = {
+export const defaultOptions = () => ({
     fillColor: {
         gradient: ["#060070ff", "#710083ff", "#bd4446ff"],
         rotate: 45,
@@ -50,4 +50,4 @@ export const defaultOptions = {
     diameter: 200,
     frequencyBand: "mids",
     glow: { color: "#fff9c4ff", strength: 3 },
-};
+});

@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-btn @click="addAnimation">Add Glob</v-btn>
+        <v-btn @click="addAnimationElement">Add Animation</v-btn>
         <template v-for="(item, i) in animations">
             <AnimationElement
                 :key="i"
@@ -41,8 +41,7 @@ export default {
             // clear old animations
             this.animations = [];
             // add default animation
-            const a = createAnimation(this.wave, "Glob");
-            this.addAnimation(a);
+            this.addAnimationElement(null);
         },
     },
     methods: {
@@ -50,6 +49,13 @@ export default {
             this.wave.addAnimation(animation);
             this.frequencyBandHelpers.push(animation._options.frequencyBand);
             this.animations.push(animation);
+        },
+        addAnimationElement(event, type = "Glob") {
+            // add an (default) animation element
+            console.log(event);
+            console.log(type);
+            const a = createAnimation(this.wave, type);
+            this.addAnimation(a);
         },
         changeFrequencyBand(frequencyBand, index) {
             this.animations[index]._options.frequencyBand = frequencyBand;
