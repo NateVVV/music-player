@@ -9,6 +9,7 @@
                 :index="i"
                 @change-frequency-band="changeFrequencyBand"
                 @change-animation-type="changeAnimationType"
+                @delete-animation="deleteAnimation"
             >
             </AnimationElement>
         </template>
@@ -84,6 +85,14 @@ export default {
                 this.wave.addAnimation(animation);
             }
             for (const animation of laterAnimations) {
+                this.wave.addAnimation(animation);
+            }
+        },
+        deleteAnimation(index) {
+            console.log(index);
+            this.$delete(this.animations, index);
+            this.wave.clearAnimations();
+            for (const animation of this.animations) {
                 this.wave.addAnimation(animation);
             }
         },

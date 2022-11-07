@@ -2,13 +2,18 @@
     <v-card class="ma-2 pa-2">
         <v-container>
             <v-row no-gutters>
-                <v-col>
+                <v-col cols="8">
                     <v-select
                         v-model="type"
                         :items="types"
                         label="Type"
                         solo
                     ></v-select>
+                </v-col>
+                <v-col cols="4">
+                    <v-btn icon color="red" @click="deleteAnimation"
+                        ><v-icon>mdi-delete</v-icon></v-btn
+                    >
                 </v-col>
             </v-row>
             <v-row>
@@ -183,6 +188,10 @@ export default {
             this.element = element;
             this.type = this.element.type;
             this.rotationEnabled = this.element.intervalId != undefined;
+        },
+        deleteAnimation() {
+            console.log("Delete");
+            this.$emit("delete-animation", this.index);
         },
     },
     watch: {
