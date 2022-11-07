@@ -33,7 +33,22 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <div>fill color: {{ element._options.fillColor }}</div>
+            <v-row>
+                <v-col cols="12"
+                    ><v-switch
+                        v-model="element._options.rounded"
+                        label="Rounded"
+                    ></v-switch
+                ></v-col>
+            </v-row>
+            <v-row v-if="type != 'Glob'">
+                <v-col cols="12">
+                    <v-switch
+                        v-model="element._options.mirroredX"
+                        label="Mirrored X"
+                    ></v-switch>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col>Fill Color</v-col>
                 <template
@@ -107,29 +122,17 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <div v-if="type != 'Glob'">
-                mirrored X: {{ element._options.mirroredX }}
-            </div>
             <v-row>
-                <v-col cols="12"
-                    ><v-switch
-                        v-model="element._options.rounded"
-                        label="Rounded"
-                    ></v-switch
-                ></v-col>
-            </v-row>
-            <div>rotate: {{ element._options.fillColor.rotate }}</div>
-            <v-row>
-                <v-col cols="12">Rotate</v-col>
-                <v-col cols="12">
+                <v-col cols="4">
                     <v-switch
                         label="Rotate"
                         v-model="rotationEnabled"
                     ></v-switch>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="8">
                     <v-slider
                         v-model="rotationSpeed"
+                        :disabled="!rotationEnabled"
                         min="1"
                         max="1000"
                         thumb-label
