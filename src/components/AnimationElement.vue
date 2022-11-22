@@ -214,5 +214,67 @@ export default {
             this.setElement(this.item);
         },
     },
+    computed: {
+        hasBottom() {
+            return [].includes(this.type);
+        },
+        hasCenter() {
+            return [].includes(this.type);
+        },
+        hasCount() {
+            return [].includes(this.type);
+        },
+        hasCubeHeight() {
+            return [].includes(this.type);
+        },
+        hasDiameter() {
+            return [].includes(this.type);
+        },
+        hasFillColor() {
+            return [].includes(this.type);
+        },
+        hasFrequencyBand() {
+            return [].includes(this.type);
+        },
+        hasGap() {
+            return [].includes(this.type);
+        },
+        hasGlow() {
+            return [].includes(this.type);
+        },
+        hasLeft() {
+            return [].includes(this.type);
+        },
+        hasLineColor() {
+            return [].includes(this.type);
+        },
+        hasLineWidth() {
+            return [].includes(this.type);
+        },
+        hasMirroredX() {
+            return [].includes(this.type);
+        },
+        hasMirroredY() {
+            return [].includes(this.type);
+        },
+        hasOffset() {
+            return [].includes(this.element.type);
+        },
+        hasRadius() {
+            return [].includes(this.type);
+        },
+        hasRight() {
+            return [].includes(this.type);
+        },
+        hasRotate() {
+            return [].includes(this.element.type);
+        },
+        hasRounded() {
+            return [].includes(this.type);
+        },
+        hasTop() {
+            return [].includes(this.type);
+        },
+    },
 };
 </script>
