@@ -40,14 +40,27 @@ export function stopRotation(animation) {
 }
 
 export const defaultOptions = () => ({
+    bottom: null,
+    center: null,
+    count: 60,
+    cubeHeight: null,
+    diameter: 200,
     fillColor: {
         gradient: ["#060070ff", "#710083ff", "#bd4446ff"],
         rotate: 45,
     },
-    lineWidth: 3,
-    count: 60,
-    lineColor: "#d7821cff",
-    diameter: 200,
     frequencyBand: "mids",
+    gap: null,
     glow: { color: "#fff9c4ff", strength: 3 },
+    left: null,
+    lineColor: "#d7821cff",
+    lineWidth: 3,
+    mirroredX: null,
+    mirroredY: null,
+    offset: null,
+    radius: null,
+    right: null,
+    rotate: null,
+    rounded: null,
+    top: null,
 });
