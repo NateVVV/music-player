@@ -216,10 +216,10 @@ export default {
     },
     computed: {
         hasBottom() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
         hasCenter() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
         hasCount() {
             return [
@@ -233,10 +233,10 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasCubeHeight() {
-            return ["Cubes", "Turntable"].includes(this.type);
+            return ["Cubes", "Turntable"].includes(this.element.type);
         },
         hasDiameter() {
             return [
@@ -247,7 +247,7 @@ export default {
                 "Shine",
                 "Square",
                 "Turntable",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasFillColor() {
             return [
@@ -258,7 +258,7 @@ export default {
                 "Glob",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasFrequencyBand() {
             return [
@@ -272,10 +272,10 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasGap() {
-            return ["Cubes", "Turntable"].includes(this.type);
+            return ["Cubes", "Turntable"].includes(this.element.type);
         },
         hasGlow() {
             return [
@@ -289,10 +289,10 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasLeft() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
         hasLineColor() {
             return [
@@ -306,7 +306,7 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasLineWidth() {
             return [
@@ -320,22 +320,24 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasMirroredX() {
-            return ["Cubes", "Glob", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Glob", "Lines", "Wave"].includes(
+                this.element.type
+            );
         },
         hasMirroredY() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
         hasOffset() {
             return ["Shine"].includes(this.element.type);
         },
         hasRadius() {
-            return ["Cubes"].includes(this.type);
+            return ["Cubes"].includes(this.element.type);
         },
         hasRight() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
         hasRotate() {
             return ["Flower", "Shine", "Turntable"].includes(this.element.type);
@@ -350,10 +352,10 @@ export default {
                 "Square",
                 "Turntable",
                 "Wave",
-            ].includes(this.type);
+            ].includes(this.element.type);
         },
         hasTop() {
-            return ["Cubes", "Lines", "Wave"].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
     },
 };
