@@ -216,64 +216,144 @@ export default {
     },
     computed: {
         hasBottom() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
         hasCenter() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
         hasCount() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasCubeHeight() {
-            return [].includes(this.type);
+            return ["Cubes", "Turntable"].includes(this.type);
         },
         hasDiameter() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Flower",
+                "Glob",
+                "Shine",
+                "Square",
+                "Turntable",
+            ].includes(this.type);
         },
         hasFillColor() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasFrequencyBand() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasGap() {
-            return [].includes(this.type);
+            return ["Cubes", "Turntable"].includes(this.type);
         },
         hasGlow() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasLeft() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
         hasLineColor() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasLineWidth() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Circles",
+                "Cubes",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasMirroredX() {
-            return [].includes(this.type);
+            return ["Cubes", "Glob", "Lines", "Wave"].includes(this.type);
         },
         hasMirroredY() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
         hasOffset() {
-            return [].includes(this.element.type);
+            return ["Shine"].includes(this.element.type);
         },
         hasRadius() {
-            return [].includes(this.type);
+            return ["Cubes"].includes(this.type);
         },
         hasRight() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
         hasRotate() {
-            return [].includes(this.element.type);
+            return ["Flower", "Shine", "Turntable"].includes(this.element.type);
         },
         hasRounded() {
-            return [].includes(this.type);
+            return [
+                "Arcs",
+                "Flower",
+                "Glob",
+                "Lines",
+                "Shine",
+                "Square",
+                "Turntable",
+                "Wave",
+            ].includes(this.type);
         },
         hasTop() {
-            return [].includes(this.type);
+            return ["Cubes", "Lines", "Wave"].includes(this.type);
         },
     },
 };
