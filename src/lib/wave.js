@@ -1,22 +1,27 @@
 export function animations(wave) {
     const animation = {
-        Arcs: wave?.animations.Arcs,
-        Circles: wave?.animations.Circles,
-        Cubes: wave?.animations.Cubes,
-        Flower: wave?.animations.Flower,
-        Glob: wave?.animations.Glob,
-        Lines: wave?.animations.Lines,
-        Shine: wave?.animations.Shine,
-        Square: wave?.animations.Square,
-        Turntable: wave?.animations.Turntable,
-        Wave: wave?.animations.Wave,
+        Arcs: {
+            ctr: wave?.animations.Arcs,
+            options: [
+                /* TODO: add possible options */
+            ],
+        },
+        Circles: { ctr: wave?.animations.Circles, options: [] },
+        Cubes: { ctr: wave?.animations.Cubes, options: [] },
+        Flower: { ctr: wave?.animations.Flower, options: [] },
+        Glob: { ctr: wave?.animations.Glob, options: [] },
+        Lines: { ctr: wave?.animations.Lines, options: [] },
+        Shine: { ctr: wave?.animations.Shine, options: [] },
+        Square: { ctr: wave?.animations.Square, options: [] },
+        Turntable: { ctr: wave?.animations.Turntable, options: [] },
+        Wave: { ctr: wave?.animations.Wave, options: [] },
     };
     return animation;
 }
 
 export function createAnimation(wave, type, options = defaultOptions()) {
     if (!wave) return;
-    const constructor = animations(wave)[type];
+    const constructor = animations(wave)[type].ctr;
     const animation = new constructor(options);
     animation.type = type;
     return animation;
