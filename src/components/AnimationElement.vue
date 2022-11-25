@@ -16,7 +16,7 @@
                     >
                 </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasCount">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.count"
@@ -27,7 +27,7 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasDiameter">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.diameter"
@@ -38,7 +38,7 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasRounded">
                 <v-col cols="12"
                     ><v-switch
                         v-model="element._options.rounded"
@@ -46,7 +46,7 @@
                     ></v-switch
                 ></v-col>
             </v-row>
-            <v-row v-if="type != 'Glob'">
+            <v-row v-if="hasMirroredX">
                 <v-col cols="12">
                     <v-switch
                         v-model="element._options.mirroredX"
@@ -54,7 +54,7 @@
                     ></v-switch>
                 </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasFillColor">
                 <v-col>Fill Color</v-col>
                 <template
                     v-for="(color, i) in element._options.fillColor.gradient"
@@ -68,7 +68,7 @@
                     </v-col>
                 </template>
             </v-row>
-            <v-row>
+            <v-row v-if="hasFrequencyBand">
                 <v-col cols="12"
                     ><v-slider
                         min="0"
@@ -85,7 +85,7 @@
                     </v-slider></v-col
                 >
             </v-row>
-            <v-row>
+            <v-row v-if="hasGlow">
                 <v-col>Glow</v-col>
                 <v-col>
                     <v-color-picker
@@ -105,7 +105,7 @@
                     </v-slider>
                 </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasLineColor">
                 <v-col>Line Color</v-col>
                 <v-col>
                     <v-color-picker
@@ -116,7 +116,7 @@
                     ></v-color-picker>
                 </v-col>
             </v-row>
-            <v-row>
+            <v-row v-if="hasLineWidth">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.lineWidth"
