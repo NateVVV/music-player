@@ -194,7 +194,6 @@ export default {
             this.$emit("delete-animation", this.index);
         },
         hasOption(option) {
-            console.log(animations()[this.type]);
             return animations()[this.type].options.includes(option);
         },
     },
