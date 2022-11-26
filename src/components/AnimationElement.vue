@@ -16,7 +16,7 @@
                     >
                 </v-col>
             </v-row>
-            <v-row v-if="hasCount">
+            <v-row v-if="hasOption('count')">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.count"
@@ -27,7 +27,7 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <v-row v-if="hasDiameter">
+            <v-row v-if="hasOption('diameter')">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.diameter"
@@ -38,7 +38,7 @@
                     ></v-slider
                 ></v-col>
             </v-row>
-            <v-row v-if="hasRounded">
+            <v-row v-if="hasOption('rounded')">
                 <v-col cols="12"
                     ><v-switch
                         v-model="element._options.rounded"
@@ -46,7 +46,7 @@
                     ></v-switch
                 ></v-col>
             </v-row>
-            <v-row v-if="hasMirroredX">
+            <v-row v-if="hasOption('mirroredX')">
                 <v-col cols="12">
                     <v-switch
                         v-model="element._options.mirroredX"
@@ -54,7 +54,7 @@
                     ></v-switch>
                 </v-col>
             </v-row>
-            <v-row v-if="hasFillColor">
+            <v-row v-if="hasOption('fillColor')">
                 <v-col>Fill Color</v-col>
                 <template
                     v-for="(color, i) in element._options.fillColor.gradient"
@@ -68,7 +68,7 @@
                     </v-col>
                 </template>
             </v-row>
-            <v-row v-if="hasFrequencyBand">
+            <v-row v-if="hasOption('frequencyBand')">
                 <v-col cols="12"
                     ><v-slider
                         min="0"
@@ -85,7 +85,7 @@
                     </v-slider></v-col
                 >
             </v-row>
-            <v-row v-if="hasGlow">
+            <v-row v-if="hasOption('glow')">
                 <v-col>Glow</v-col>
                 <v-col>
                     <v-color-picker
@@ -105,7 +105,7 @@
                     </v-slider>
                 </v-col>
             </v-row>
-            <v-row v-if="hasLineColor">
+            <v-row v-if="hasOption('lineColor')">
                 <v-col>Line Color</v-col>
                 <v-col>
                     <v-color-picker
@@ -116,7 +116,7 @@
                     ></v-color-picker>
                 </v-col>
             </v-row>
-            <v-row v-if="hasLineWidth">
+            <v-row v-if="hasOption('lineWidth')">
                 <v-col cols="12"
                     ><v-slider
                         v-model="element._options.lineWidth"
@@ -193,6 +193,10 @@ export default {
             console.log("Delete");
             this.$emit("delete-animation", this.index);
         },
+        hasOption(option) {
+            console.log(animations()[this.type]);
+            return animations()[this.type].options.includes(option);
+        },
     },
     watch: {
         rotationSpeed(speed) {
@@ -212,150 +216,6 @@ export default {
         },
         item() {
             this.setElement(this.item);
-        },
-    },
-    computed: {
-        hasBottom() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
-        },
-        hasCenter() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
-        },
-        hasCount() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasCubeHeight() {
-            return ["Cubes", "Turntable"].includes(this.element.type);
-        },
-        hasDiameter() {
-            return [
-                "Arcs",
-                "Circles",
-                "Flower",
-                "Glob",
-                "Shine",
-                "Square",
-                "Turntable",
-            ].includes(this.element.type);
-        },
-        hasFillColor() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasFrequencyBand() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasGap() {
-            return ["Cubes", "Turntable"].includes(this.element.type);
-        },
-        hasGlow() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasLeft() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
-        },
-        hasLineColor() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasLineWidth() {
-            return [
-                "Arcs",
-                "Circles",
-                "Cubes",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasMirroredX() {
-            return ["Cubes", "Glob", "Lines", "Wave"].includes(
-                this.element.type
-            );
-        },
-        hasMirroredY() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
-        },
-        hasOffset() {
-            return ["Shine"].includes(this.element.type);
-        },
-        hasRadius() {
-            return ["Cubes"].includes(this.element.type);
-        },
-        hasRight() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
-        },
-        hasRotate() {
-            return ["Flower", "Shine", "Turntable"].includes(this.element.type);
-        },
-        hasRounded() {
-            return [
-                "Arcs",
-                "Flower",
-                "Glob",
-                "Lines",
-                "Shine",
-                "Square",
-                "Turntable",
-                "Wave",
-            ].includes(this.element.type);
-        },
-        hasTop() {
-            return ["Cubes", "Lines", "Wave"].includes(this.element.type);
         },
     },
 };
